@@ -1,0 +1,20 @@
+{
+    "courses": [
+
+        {
+            "id": 1,
+            "title": "test1",
+            "description": "test-description"
+        },
+        {
+            "id": 2,
+            "title": "test2",
+            "description": "test-description2"
+        },
+        {
+            "id": 3,
+            "title": "test3",
+            "description": "test-description3"
+        }
+    ]
+}

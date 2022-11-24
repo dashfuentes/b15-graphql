@@ -1,0 +1,14 @@
+
+
+query getWelcomeWithName($name: String, $age: Int){
+  
+  getName(name : $name, age :$age)
+  
+}
+
+query getCourses {
+   getCourses {
+     id
+    title
+  }
+}

@@ -11,11 +11,14 @@ const schema = buildSchema( `
      getWelcome:String
      getName(name: String, age: Int): String
      getCourses : [Course]
+     
     }
 
     type Mutation {
         addCourse(id: Int!, title: String!, description: String) :  [Course]
         updateCourse(id: Int, title: String, description: String) : Course
+        removeCourse(id: Int): [Course]
+
     }
 
     type Course {
@@ -24,9 +27,21 @@ const schema = buildSchema( `
         description : String
     }
 
-
 `)
 
+
+const removeCourse = ( { id } ) => {
+    //Find the object to remove
+    let getIndex = courses.findIndex( line => line.id === id );
+    //remove the object
+    courses.splice(getIndex,1)
+    //return courses without the initial course
+    return courses;
+
+
+
+    return courses.filter( line => { return line.id !== id } )
+}
 const addCourse = ({id,title,description}) => {
     //create object
     const newCourse = {id: id, title: title, description : description}
@@ -56,6 +71,7 @@ const getWelcome = () => {
     return 'Hola mundo';
 }
 
+
 const getName = ( args ) => {
     return "Hello " + args.name + ' ' + args.age;
 
@@ -70,7 +86,8 @@ const root = {
     getName: getName,
     getCourses: getCourses,
     addCourse: addCourse,
-    updateCourse : updateCourse
+    updateCourse: updateCourse,
+    removeCourse : removeCourse
 }
 
 app.use( '/graphql', graphqlHTTP( {

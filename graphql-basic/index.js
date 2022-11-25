@@ -13,6 +13,11 @@ const schema = buildSchema( `
      getCourses : [Course]
     }
 
+    type Mutation {
+        addCourse(id: Int!, title: String!, description: String) :  [Course]
+        updateCourse(id: Int, title: String, description: String) : Course
+    }
+
     type Course {
         id: Int
         title: String
@@ -21,6 +26,31 @@ const schema = buildSchema( `
 
 
 `)
+
+const addCourse = ({id,title,description}) => {
+    //create object
+    const newCourse = {id: id, title: title, description : description}
+    //push the object to []
+    courses.push( newCourse );
+    //return the collection []
+    return courses;
+}
+
+const updateCourse = ( { id, title, description } ) => {
+    //Find the course object to update
+    courses.map( course => {
+        if ( course.id == id ) {
+
+            course.title = title ? title : course.title;
+            course.description = description ? description : course.description
+        }
+        return course
+     })
+
+    //Return object by id
+    return courses.find( course => course.id == id );
+
+}
 
 const getWelcome = () => {
     return 'Hola mundo';
@@ -38,7 +68,9 @@ const root = {
     //properties (Schema) == functions
     getWelcome: getWelcome,
     getName: getName,
-    getCourses : getCourses
+    getCourses: getCourses,
+    addCourse: addCourse,
+    updateCourse : updateCourse
 }
 
 app.use( '/graphql', graphqlHTTP( {

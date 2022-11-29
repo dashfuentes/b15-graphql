@@ -71,7 +71,6 @@ const getWelcome = () => {
     return 'Hola mundo';
 }
 
-
 const getName = ( args ) => {
     return "Hello " + args.name + ' ' + args.age;
 
@@ -81,7 +80,7 @@ const getCourses = () => {
 }
 
 const root = {
-    //properties (Schema) == functions
+    //properties (Schema) == resolvers
     getWelcome: getWelcome,
     getName: getName,
     getCourses: getCourses,
@@ -89,6 +88,10 @@ const root = {
     updateCourse: updateCourse,
     removeCourse : removeCourse
 }
+
+app.get('/api/welcome', (req, res) => {
+    res.send('hello world')
+  })
 
 app.use( '/graphql', graphqlHTTP( {
     schema: schema,

@@ -10,5 +10,13 @@ export const resolvers = {
         }
     },
 
+    Mutation: {
+        async createCourse( _, { input } ) {
+            //{title: test, description: destest.........}
+          return await  Course.create(input)
+            
+        }
+    }
+
    
 }

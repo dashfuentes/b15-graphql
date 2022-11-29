@@ -8,6 +8,9 @@ const TypeDefs = `
       getCourses : [Course]
     }
 
+    type Mutation {
+        createCourse(input: CourseInput ) : Course
+    }
     type Course {
         _id : ID
         title: String!
@@ -15,6 +18,15 @@ const TypeDefs = `
         date: String
         isReleased: Boolean
     }
+
+    input CourseInput {
+        title: String!
+        description: String
+        date: String
+        isReleased: Boolean
+
+    }
+
 
 `
 

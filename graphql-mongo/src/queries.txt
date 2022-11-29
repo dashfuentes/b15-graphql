@@ -1,0 +1,20 @@
+mutation createCourse($title: String!, $description: String, $date: String, $isReleased: Boolean){
+  
+  createCourse(input :{title : $title, description: $description, date : $date, isReleased : $isReleased})
+  
+    {
+      _id
+      title
+    }
+  
+}
+
+
+mutation updateCoure($title: String!, $description: String, $date: String, $isReleased: Boolean, $_id: ID){
+  
+  updateCourse(input :{title : $title, description: $description, date : $date, isReleased : $isReleased}, _id: $_id){
+    _id
+    title
+    description
+  }
+}

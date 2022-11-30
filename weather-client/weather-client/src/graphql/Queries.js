@@ -15,6 +15,7 @@ query getCityByName($name: String!) {
         min
         max
       }
+
       wind{
         speed
       }
@@ -26,3 +27,8 @@ query getCityByName($name: String!) {
   }
 }
 `;
+
+// export const GET_CITY_BY_ID = gql`
+
+
+// `

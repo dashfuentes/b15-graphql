@@ -4,7 +4,7 @@ import { useLazyQuery } from "@apollo/client";
 import { GET_WEATHER_QUERY } from "../graphql/Queries";
 
 const Home = () => {
-    //Declare citySearch state
+    //Declare citySearch state 
     const [citySearch, setCitySearched] = useState( "" );
 
     //Fetch the GET_WEATHER_QUERY and give the city name argument {}
@@ -19,7 +19,6 @@ const Home = () => {
         console.log(data)
     }
    
-
 	return (
 		<>
 			<div className="container-info">
@@ -28,30 +27,35 @@ const Home = () => {
                     type="text"
                     placeholder="San Salvador"
                     onChange={( e ) => {
-                      
                         setCitySearched(e.target.value)
                     }}
                 />
                 <button onClick={()=> getWeather()} className="search-btn">Search</button>
-			</div>
+            </div>          
 			<div className="card">
 				<img
 					src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80"
 					alt="Avatar"
 					style={{ width: "100%" }}
-				/>
-				<div className="container">
-					<h4>
-						<b>John Doe</b>
-					</h4>
-                    <p><span>Temperature min: </span>Architect & Engineer</p>
-                    <p><span>Temperature max: </span>Architect & Engineer</p>
-                    <h4>
-						<b>Wind Information</b>
-					</h4>
-                    <p><span>Speed: </span>Architect & Engineer</p>
-                    
-				</div>
+                />
+                 {/* true && true */}
+                { data && (
+                    <>
+                        <div className="container">
+                            <h4>
+                                <b>{data.getCityByName.name}</b>
+                            </h4>
+                            <p><span>Temperature min: </span>{data.getCityByName.weather.temperature.min }</p>
+                            <p><span>Temperature max: </span>{data.getCityByName.weather.temperature.min }</p>
+                            <h4>
+                                <b>Wind Information</b>
+                            </h4>
+                            <p><span>Speed: </span>{data.getCityByName.weather.wind.speed }</p>
+                            
+                        </div>
+                        </>
+                )}
+				
 			</div>
 		</>
 	);

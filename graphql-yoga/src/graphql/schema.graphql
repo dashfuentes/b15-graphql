@@ -1,0 +1,14 @@
+type Query{
+ ping: String
+# Get notes   
+# Get notes by id
+}
+
+type Mutation {
+    #Create note
+    #Update note
+    #Delete note  
+}
+
+
+

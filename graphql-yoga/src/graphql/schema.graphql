@@ -1,14 +1,25 @@
 type Query{
  ping: String
-# Get notes   
-# Get notes by id
+    getNotes:[Note]
+    getNotesById(_id:ID): Note
 }
 
 type Mutation {
-    #Create note
-    #Update note
-    #Delete note  
+    createNote(input:NoteInput) : Note
+    updateNote(input:NoteInput, _id:ID) :Note
+    removeNote(_id:ID):[Note]
 }
-
-
-
+type Note {
+    _id:ID!
+    title:String!
+    content:String!
+    date:String!
+    author:String!
+}
+input NoteInput {
+    _id:ID
+    title:String!
+    content:String!
+    date:String!
+    author:String!
+}

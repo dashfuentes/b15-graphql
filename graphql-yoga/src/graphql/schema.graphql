@@ -17,7 +17,6 @@ type Note {
     author:String!
 }
 input NoteInput {
-    _id:ID
     title:String!
     content:String!
     date:String!

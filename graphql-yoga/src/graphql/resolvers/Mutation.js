@@ -11,8 +11,8 @@ const Mutation ={
                 {new:true}
             )
         },
-        async removeNote(_,{_id}){
-          await Note.findByIdAndRemove(_id)
+        async removeNote(_,{id}){
+          await Note.findByIdAndRemove(id)
             return await Note.find()
         }
     

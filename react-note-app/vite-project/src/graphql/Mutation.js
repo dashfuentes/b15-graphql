@@ -10,8 +10,8 @@ mutation createNote($title: String!, $content: String!, $date: String!, $author:
 }
 `
 export const REMOVE_NOTE = gql`
-mutation removeNote($_id: ID!){
-    removeNote(_id: $id){
+mutation removeNote($id: ID!){
+    removeNote(id: $id){
         _id
         title
         content

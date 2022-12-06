@@ -7,7 +7,7 @@ type Query{
 type Mutation {
     createNote(input:NoteInput) : Note
     updateNote(input:NoteInput, _id:ID) :Note
-    removeNote(_id:ID):[Note]
+    removeNote(id:ID):[Note]
 }
 type Note {
     _id:ID!

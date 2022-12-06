@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { GET_NOTES } from "../graphql/Queries";
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import {REMOVE_NOTE} from "../graphql/Mutation"
 
 
 
@@ -13,6 +14,11 @@ const Home = () => {
 	
 
 	const [getNotes, { data, error }] = useLazyQuery( GET_NOTES );
+
+	const [removeNote] = useMutation( REMOVE_NOTE, {
+		//refetch the query notes
+		refetchQueries : [ {query: GET_NOTES} ]
+	})
 
 	if ( error ) return <h1>Error { error}</h1>
 	if ( data ) {
@@ -59,7 +65,13 @@ const Home = () => {
 							Update
 						</button>
 						<button
-							
+								onClick={async ( e ) => {
+									//getting the document id
+								    let getDocumentId = e.target.parentElement.getAttribute( "data-id" );
+								
+									//Calling the remove mutation and refetching the note list
+									return await removeNote({variables: { id : getDocumentId }})
+						}}
 							class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
 							>
 								

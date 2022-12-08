@@ -5,6 +5,9 @@ mutation createNote($title: String!, $content: String!, $date: String!, $author:
     createNote(input: {title: $title, content: $content, date: $date, author: $author}){
         _id
         title 
+        content
+        date
+        author
     }
   
 }
@@ -16,6 +19,7 @@ mutation removeNote($id: ID!){
         title
         content
         date
+        author
 
     }
 }
@@ -25,6 +29,9 @@ mutation updateNote($title: String!, $content: String!, $date: String!, $author:
     updateNote(input: {title: $title, content: $content, date: $date, author: $author} ,  _id : $_id) {
         _id
         title
+        content
+        author
+        date
     }
 }
 `

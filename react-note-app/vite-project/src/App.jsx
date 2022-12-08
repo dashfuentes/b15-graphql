@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Form from "./components/Form"
+import Login from "./components/Login";
 
 function App() {
 	const client = new ApolloClient({
@@ -17,8 +18,9 @@ function App() {
 
 				<Navbar />
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/create-note"  element={<Form />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/create-note" element={<Form />} />
+					<Route  index element={<Login />} />
 				</Routes>
 				
 
